@@ -1335,6 +1335,7 @@ en:
     contrast: Mastodon (High contrast)
     default: Mastodon (Dark)
     hellowland: Hello Wland!
+    mastodon-light: Mastodon (Light)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
