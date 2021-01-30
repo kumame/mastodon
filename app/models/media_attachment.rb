@@ -59,12 +59,12 @@ class MediaAttachment < ApplicationRecord
 
   IMAGE_STYLES = {
     original: {
-      pixels: 1_638_400, # 1280x1280px
+      pixels: 3_686_400, # 1920x1920px
       file_geometry_parser: FastGeometryParser,
     }.freeze,
 
     small: {
-      pixels: 160_000, # 400x400px
+      pixels: 90_000, # 400x400px
       file_geometry_parser: FastGeometryParser,
       blurhash: BLURHASH_OPTIONS,
     }.freeze,
@@ -82,9 +82,9 @@ class MediaAttachment < ApplicationRecord
         'vsync' => 'cfr',
         'c:v' => 'h264',
         'maxrate' => '1300K',
-        'bufsize' => '1300K',
+        'bufsize' => '800K', #缓冲
         'frames:v' => 60 * 60 * 3,
-        'crf' => 18,
+        'crf' => 23, #压缩
         'map_metadata' => '-1',
       }.freeze,
     }.freeze,
@@ -150,11 +150,11 @@ class MediaAttachment < ApplicationRecord
     all: '-quality 90 -strip +set modify-date +set create-date',
   }.freeze
 
-  IMAGE_LIMIT = 10.megabytes
-  VIDEO_LIMIT = 40.megabytes
+  IMAGE_LIMIT = 2.megabytes
+  VIDEO_LIMIT = 20.megabytes
 
-  MAX_VIDEO_MATRIX_LIMIT = 2_304_000 # 1920x1200px
-  MAX_VIDEO_FRAME_RATE   = 60
+  MAX_VIDEO_MATRIX_LIMIT = 1_024_000 # 1280x800px
+  MAX_VIDEO_FRAME_RATE   = 30 # 帧率
 
   belongs_to :account,          inverse_of: :media_attachments, optional: true
   belongs_to :status,           inverse_of: :media_attachments, optional: true
