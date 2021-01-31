@@ -4,7 +4,7 @@ $white: #ffffff;
 // Dependent colors
 $classic-base-color: #333;
 $classic-primary-color: #888;
-$classic-secondary-color: #f3f3f3;
+$classic-secondary-color: #e3e3e3;
 $classic-highlight-color: #65acbd;
 
 // Differences
@@ -52,3 +52,11 @@ body{background: #525659;}
   background: #d8f2f9;
 }
 .landing__brand svg {fill: $white;}
+input[type=text],
+input[type=number],
+input[type=email],
+input[type=password],
+input[type=url],
+textarea {
+  background: $white;
+}
