@@ -55,28 +55,23 @@ code, .simple_form .hint code, .flash-message {background: #d8f2f9;}
 .drawer__inner__mastodon {background: none;}
 .drawer__inner__mastodon>img {opacity: 0.5;}
 .landing__brand svg {fill: $white;}
-input[type=text],
-input[type=number],
-input[type=email],
-input[type=password],
-input[type=url],
-textarea {
-  background: $white;
-  border: 1px solid #ccc;
-  &:focus {
+.simple_form{
+  input[type=text], input[type=number], input[type=email], input[type=password], input[type=url], textarea {
     background: $white;
+    border: 1px solid #ccc;
+    &:focus {background: $white;}
   }
 }
-.admin-wrapper .content-wrapper, .admin-wrapper .sidebar ul a.selected, .admin-wrapper .sidebar ul ul a, .admin-wrapper .sidebar ul ul a:hover, .admin-wrapper .sidebar ul .simple-navigation-active-leaf a:hover {background: $white;}
-.admin-wrapper .sidebar ul ul a:hover, .directory__tag h4 .fa {color: $classic-highlight-color;}
+
+.admin-wrapper .content-wrapper, .admin-wrapper .sidebar ul .simple-navigation-active-leaf a:hover {background: $white;}
+.directory__tag h4 .fa {color: $classic-highlight-color;}
 .simple_form select, .input-copy input[type=text] {border: 1px solid #ccc;}
 .trends__item__current {color: $classic-primary-color;}
-.column>.scrollable {background: $classic-secondary-color;}
-.drawer__inner {background: $classic-secondary-color;}
-.box-widget {background: $classic-secondary-color;}
-.admin-wrapper .sidebar ul #appearance a.selected {color: $classic-highlight-color;}
-.admin-wrapper .content .positive-hint {color: $white;background: $valid-value-color;}
+.column>.scrollable {background: #f3f3f3;}
+.drawer__inner {background: #f3f3f3;}
+.admin-wrapper .content .positive-hint {color: $white; background: $valid-value-color; padding: .2rem .5rem; border-radius: .3rem; }
 .public-layout .footer h4, .public-layout .public-account-bio__extra {color: #aaa}
-.hero-widget__text a {color: $classic-highlight-color;font-weight: bold;}
+.hero-widget__text a {color: #4f96a7;}
 .status__display-name strong {color: #4f96a7; font-weight: bold;}
 .character-counter {color: $dark-text-color;}
+.admin-wrapper .sidebar ul ul {background: $classic-secondary-color;}
