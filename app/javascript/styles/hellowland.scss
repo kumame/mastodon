@@ -21,7 +21,7 @@ $ui-highlight-color: #65acbd;
 
 $primary-text-color: $black !default;
 $darker-text-color: $classic-base-color !default;
-$dark-text-color: #444;
+$dark-text-color: #aaa;
 $action-button-color: #606984;
 
 $inverted-text-color: $black !default;
@@ -71,4 +71,12 @@ textarea {
 .admin-wrapper .sidebar ul ul a:hover, .directory__tag h4 .fa {color: $classic-highlight-color;}
 .simple_form select, .input-copy input[type=text] {border: 1px solid #ccc;}
 .trends__item__current {color: $classic-primary-color;}
-.box-widget, .column>.scrollable, .drawer__inner {background: $classic-secondary-color;}
+.column>.scrollable {background: $classic-secondary-color;}
+.drawer__inner {background: $classic-secondary-color;}
+.box-widget {background: $classic-secondary-color;}
+.admin-wrapper .sidebar ul #appearance a.selected {color: $classic-highlight-color;}
+.admin-wrapper .content .positive-hint {color: $white;background: $valid-value-color;}
+.public-layout .footer h4, .public-layout .public-account-bio__extra {color: #aaa}
+.hero-widget__text a {color: $classic-highlight-color;font-weight: bold;}
+.status__display-name strong {color: #4f96a7; font-weight: bold;}
+.character-counter {color: $dark-text-color;}
