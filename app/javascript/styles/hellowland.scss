@@ -4,7 +4,7 @@ $white: #ffffff;
 // Dependent colors
 $classic-base-color: #333;
 $classic-primary-color: #888;
-$classic-secondary-color: #e3e3e3;
+$classic-secondary-color: #f3f3f3;
 $classic-highlight-color: #65acbd;
 
 // Differences
@@ -46,11 +46,14 @@ $emojis-requiring-inversion: 'chains';
 @import 'mastodon-light/diff';
 
 body{background: #525659;}
+code, .simple_form .hint code, .flash-message {background: #d8f2f9;}
 .placeholder-widget {
   border: 2px dashed darken($classic-highlight-color, 10%);
   color: $classic-base-color;
   background: #d8f2f9;
 }
+.drawer__inner__mastodon {background: none;}
+.drawer__inner__mastodon>img {opacity: 0.5;}
 .landing__brand svg {fill: $white;}
 input[type=text],
 input[type=number],
@@ -59,4 +62,13 @@ input[type=password],
 input[type=url],
 textarea {
   background: $white;
+  border: 1px solid #ccc;
+  &:focus {
+    background: $white;
+  }
 }
+.admin-wrapper .content-wrapper, .admin-wrapper .sidebar ul a.selected, .admin-wrapper .sidebar ul ul a, .admin-wrapper .sidebar ul ul a:hover, .admin-wrapper .sidebar ul .simple-navigation-active-leaf a:hover {background: $white;}
+.admin-wrapper .sidebar ul ul a:hover, .directory__tag h4 .fa {color: $classic-highlight-color;}
+.simple_form select, .input-copy input[type=text] {border: 1px solid #ccc;}
+.trends__item__current {color: $classic-primary-color;}
+.box-widget, .column>.scrollable, .drawer__inner {background: $classic-secondary-color;}
