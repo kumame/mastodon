@@ -13,7 +13,7 @@ $success-green: lighten(#3c754d, 8%);
 $base-overlay-background: $white !default;
 $valid-value-color: $success-green !default;
 
-$ui-base-color: $classic-base-color !default;
+$ui-base-color: $classic-primary-color !default;
 $ui-secondary-color: $classic-base-color !default;
 $ui-highlight-color: $classic-highlight-color;
 
@@ -22,14 +22,14 @@ $darker-text-color: $classic-primary-color !default;
 $dark-text-color: $classic-primary-color;
 $action-button-color: $classic-secondary-color;
 $secondary-text-color: $classic-primary-color;
-
+// For texts on inverted backgrounds
+$inverted-text-color: $ui-base-color !default;
 $lighter-text-color: $classic-base-color !default;
 $light-text-color: $classic-primary-color;
 
 //Newly added colors
 $account-background-color: $white !default;
 
-@import 'application';
 
 body{background: #525659;}
 .placeholder-widget {
@@ -37,23 +37,49 @@ body{background: #525659;}
   color: $classic-primary-color;
   background: #d8f2f9;
 }
+input[type=text],
+input[type=number],
+input[type=email],
+input[type=password],
+input[type=url],
+textarea {
+  color:$classic-primary-color;
+  background: $white;
+  &:active,
+  &:focus {
+    background: $classic-base-color;
+  }
+}
+.drawer__inner{background: $classic-base-color;}
 .placeholder-widget a{color: darken($ui-highlight-color, 15%);}
 .public-layout .header .brand svg {fill: $classic-primary-color;}
 .public-layout .header .brand svg:hover {background: $classic-base-color;}
-.public-layout .header .nav-link {color: $classic-secondary-color}
-.public-layout .header .nav-link:hover {color: $classic-primary-color;}
+.public-layout .header .nav-link, .status__relative-time, .status__display-name, .public-account-bio .public-account-bio__extra, .account__section-headline a.active, .attachment-list__list a, .simple_form .hint, .landing .hero-widget__counter strong {color: $classic-secondary-color;}
+.public-layout .header .nav-link:hover, .public-account-bio .account__header__content, .simple_form .input.with_label .label_input>label, .simple_form select, .simple_form .input.with_floating_label .label_input>label, .simple_form .input.radio_buttons .radio label, .simple_form .hint, .admin-wrapper .sidebar ul a:hover, .column-header, .column-link {color: $classic-primary-color;}
 .public-layout .header .nav-button {background: $classic-base-color;}
 .public-layout .header .nav-button:hover {background: lighten($classic-highlight-color, 30%);}
 .public-layout .public-account-header__tabs__tabs .counter:after {border-bottom: 4px solid darken($classic-base-color, 30%);}
 .public-layout .public-account-header__tabs__tabs .counter.active:after {border-bottom: 4px solid $classic-highlight-color;}
-.public-layout .public-account-bio .account__header__content {color: $classic-primary-color;}
-.public-layout .public-account-bio__extra {color: $classic-secondary-color;}
 .drawer__inner__mastodon {background: none;}
 .drawer__inner__mastodon > img {opacity: 0.6;}
 
-.simple_form .hint{color:$classic-secondary-color;}
+.status__display-name strong, .hero-widget__text a {color: darken($ui-highlight-color, 15%);font-weight: bold;}
+.attachment-list {border: 1px solid $classic-secondary-color;}
+.attachment-list__icon {color: $classic-highlight-color;}
+
+.attachment-list {background: $white;}
+.public-layout .footer h4 {color: $classic-base-color;}
+.public-layout .footer ul a, .public-layout .footer .brand svg {color: darken($classic-base-color, 15%);}
+.simple_form select {background: $white url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color($classic-secondary-color)}'/></svg>") no-repeat right 8px center / auto 16px;}
+
 .simple_form .recommended{
   color:$classic-highlight-color;
   background-color: rgba($classic-highlight-color, 0.1);
   border: 1px solid rgba($classic-highlight-color, 0.5);
 }
+
+.status {border-bottom: 1px solid lighten($classic-secondary-color, 8%);}
+.icon-button.overlayed {background: rgba($black, 0.6);color: rgba($black, 0.7);}
+.media-gallery__gifv__label{background: rgba($black, 0.5);}
+
+@import 'application';
