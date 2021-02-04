@@ -31,8 +31,7 @@
 class MediaAttachment < ApplicationRecord
   self.inheritance_column = nil
 
-  #enum type: [:image, :gifv, :video, :unknown, :audio]
-  enum type: [:image, :gifv, :video, :unknown]
+  enum type: [:image, :gifv, :video, :unknown, :audio]
   enum processing: [:queued, :in_progress, :complete, :failed], _prefix: true
 
   MAX_DESCRIPTION_LENGTH = 1_500
@@ -40,6 +39,7 @@ class MediaAttachment < ApplicationRecord
   IMAGE_FILE_EXTENSIONS = %w(.jpg .jpeg .png .gif).freeze
   VIDEO_FILE_EXTENSIONS = %w(.webm .mp4 .m4v .mov).freeze
   #AUDIO_FILE_EXTENSIONS = %w(.ogg .oga .mp3 .wav .flac .opus .aac .m4a .3gp .wma).freeze
+  AUDIO_FILE_EXTENSIONS = %w().freeze
 
   META_KEYS = %i(
     focus
@@ -52,6 +52,7 @@ class MediaAttachment < ApplicationRecord
   VIDEO_MIME_TYPES             = %w(video/webm video/mp4 video/quicktime video/ogg).freeze
   VIDEO_CONVERTIBLE_MIME_TYPES = %w(video/webm video/quicktime).freeze
   #AUDIO_MIME_TYPES             = %w(audio/wave audio/wav audio/x-wav audio/x-pn-wave audio/ogg audio/mpeg audio/mp3 audio/webm audio/flac audio/aac audio/m4a audio/x-m4a audio/mp4 audio/3gpp video/x-ms-asf).freeze
+  AUDIO_MIME_TYPES             = %w().freeze
 
   BLURHASH_OPTIONS = {
     x_comp: 4,
@@ -155,7 +156,7 @@ class MediaAttachment < ApplicationRecord
   VIDEO_LIMIT = 20.megabytes
 
   MAX_VIDEO_MATRIX_LIMIT = 2_304_000 # 1920x1200px
-  MAX_VIDEO_FRAME_RATE   = 30 # 帧率
+  MAX_VIDEO_FRAME_RATE   = 60 # 帧率
 
   belongs_to :account,          inverse_of: :media_attachments, optional: true
   belongs_to :status,           inverse_of: :media_attachments, optional: true
@@ -263,13 +264,11 @@ class MediaAttachment < ApplicationRecord
 
   class << self
     def supported_mime_types
-      #IMAGE_MIME_TYPES + VIDEO_MIME_TYPES + AUDIO_MIME_TYPES
-      IMAGE_MIME_TYPES + VIDEO_MIME_TYPES
+      IMAGE_MIME_TYPES + VIDEO_MIME_TYPES + AUDIO_MIME_TYPES
     end
 
     def supported_file_extensions
-      #IMAGE_FILE_EXTENSIONS + VIDEO_FILE_EXTENSIONS + AUDIO_FILE_EXTENSIONS
-      IMAGE_FILE_EXTENSIONS + VIDEO_FILE_EXTENSIONS
+      IMAGE_FILE_EXTENSIONS + VIDEO_FILE_EXTENSIONS + AUDIO_FILE_EXTENSIONS
     end
 
     private
@@ -281,8 +280,8 @@ class MediaAttachment < ApplicationRecord
         IMAGE_STYLES
       elsif VIDEO_MIME_TYPES.include?(attachment.instance.file_content_type)
         VIDEO_STYLES
-      #else
-        #AUDIO_STYLES
+      else
+        AUDIO_STYLES
       end
     end
 
@@ -291,8 +290,8 @@ class MediaAttachment < ApplicationRecord
         [:gif_transcoder, :blurhash_transcoder]
       elsif VIDEO_MIME_TYPES.include?(instance.file_content_type)
         [:video_transcoder, :blurhash_transcoder, :type_corrector]
-      #elsif AUDIO_MIME_TYPES.include?(instance.file_content_type)
-        #[:image_extractor, :transcoder, :type_corrector]
+      elsif AUDIO_MIME_TYPES.include?(instance.file_content_type)
+        [:image_extractor, :transcoder, :type_corrector]
       else
         [:lazy_thumbnail, :blurhash_transcoder, :type_corrector]
       end
@@ -320,8 +319,8 @@ class MediaAttachment < ApplicationRecord
     self.type = begin
       if VIDEO_MIME_TYPES.include?(file_content_type)
         :video
-      #elsif AUDIO_MIME_TYPES.include?(file_content_type)
-        #:audio
+      elsif AUDIO_MIME_TYPES.include?(file_content_type)
+        :audio
       else
         :image
       end
